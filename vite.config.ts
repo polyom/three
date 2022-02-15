@@ -4,5 +4,10 @@ export default defineConfig({
 	build: {
 		outDir: "docs",
 	},
-	base: "three",
+	base: "/three",
+	server: {
+		fs: {
+			allow: [".."],
+		},
+	},
 });

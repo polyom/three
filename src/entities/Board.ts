@@ -44,9 +44,7 @@ export class Board extends Group {
 		this.cursor?.cubes.forEach((cube, i) => {
 			this.add(cube);
 			const [x, y] = this.printLocations[i];
-			console.log(this.cursor!.position.y - cube.y, -y);
-
-			cube.set(x, this.cursor!.position.y + cube.y, true);
+			cube.set(x, this.cursor!.position.y - this.cursor!.y - y, true);
 			cube.set(x, -y);
 			this.stack[y][x] = cube;
 		});
@@ -60,11 +58,12 @@ export class Board extends Group {
 		this.cursor.set(x, y, angle);
 	}
 
-	swap() {
+	swap(x: number, y: number) {
 		const held = this.held;
 		this.held = this.cursor;
 		this.cursor = held;
 		this.held!.set(-4, 0, 0);
+		this.cursor?.set(x, y, 0);
 	}
 
 	clearLines(lines: number[]) {

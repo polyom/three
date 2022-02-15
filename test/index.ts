@@ -49,8 +49,8 @@ engine.on("push", ([i]) => {
 	board.push(engine.state.getShape(i, 0), -(x - 1) / 2, -(y - 1) / 2);
 });
 
-engine.on("swap", (_, ok) => {
-	if (ok) board.swap();
+engine.on("swap", () => {
+	board.swap(engine.state.x, engine.state.y);
 });
 
 engine.on("print", ([x, y, id]) => {
